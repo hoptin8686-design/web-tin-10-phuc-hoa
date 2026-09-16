@@ -19,8 +19,8 @@ export default function HomePage() {
       const extra = getExtra(lesson.id);
       counts[lesson.id] = {
         mcq: getQuestions(lesson.id).length,
-        tf: extra.tf.length,
-        essay: extra.essay.length,
+        tf: extra?.tf?.length ?? 0,
+        essay: extra?.essay?.length ?? 0,
         theory: hasTheory(lesson.id),
       };
     }

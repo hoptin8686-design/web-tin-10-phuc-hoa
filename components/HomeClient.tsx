@@ -202,14 +202,14 @@ export default function HomeClient({
                 {topic.lessons.map((lesson) => {
                   const lessonScore = progress[lesson.id]?.best;
                   const lessonCount = counts[lesson.id];
-                  const isBai1 = lesson.id === "bai-01";
+                  const isFullLesson = true; // All lessons now have content
 
                   return (
                     <Link
                       key={lesson.id}
                       href={`/luyen/${lesson.id}`}
                       className={`group flex flex-col justify-between rounded-2xl border p-4 transition-all hover:-translate-y-0.5 shadow-sm ${
-                        isBai1
+                        isFullLesson
                           ? "border-sea/50 bg-gradient-to-br from-sea/[0.15] to-void-card ring-1 ring-sea/40"
                           : "border-star/10 bg-void-card hover:border-sea/40 hover:bg-void-light"
                       }`}
@@ -222,9 +222,9 @@ export default function HomeClient({
                           {lessonScore !== undefined && (
                             <ScoreBadge best={lessonScore} />
                           )}
-                          {isBai1 && (
+                          {isFullLesson && (
                             <span className="rounded-full bg-sea px-2 py-0.5 font-mono text-[10px] font-bold text-white uppercase tracking-wider">
-                              Bài Mẫu Hoàn Chỉnh
+                              {lesson.id === "bai-01" ? "Bài Mẫu Hoàn Chỉnh" : "Đầy đủ 4 Phân hệ"}
                             </span>
                           )}
                         </div>
@@ -243,14 +243,11 @@ export default function HomeClient({
                       <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-2.5 text-xs text-star-soft">
                         <span className="flex items-center gap-1 font-mono">
                           {lessonCount ? (
-                            <>
-                              <span>🎯 {lessonCount.mcq} trắc nghiệm</span>
-                              {lessonCount.tf > 0 && <span>· ⚖️ {lessonCount.tf} Đ/S</span>}
-                            </>
-                          ) : isBai1 ? (
-                            "🎯 15 câu · ⚖️ Đ/S · 📖 SGK"
+                            lesson.id === "bai-01"
+                              ? "📖 SGK · 💡 Lý thuyết · 🎯 15 câu · ⚖️ Đ/S"
+                              : "💡 Lý thuyết · 🎯 15 câu · ⚖️ Đ/S · 📝 Tự luận"
                           ) : (
-                            "Xem chi tiết bài học"
+                            <span>Xem chi tiết bài học</span>
                           )}
                         </span>
                         <span className="font-display font-semibold text-sea-deep group-hover:translate-x-0.5 transition">
