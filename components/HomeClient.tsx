@@ -72,7 +72,7 @@ export default function HomeClient({
             </div>
             {/* Dòng chữ phụ đề tổ chuyên môn */}
             <p className="mt-2 font-mono text-xs sm:text-sm font-semibold text-sea-deep tracking-wide">
-              Tổ Tin học — Năm học 2026-2027
+              Tổ Tự nhiên — Năm học 2026-2027
             </p>
           </div>
 
@@ -271,7 +271,7 @@ export default function HomeClient({
             Hệ thống Học tập & Ôn luyện Tin học 10 — Trường THPT Phục Hòa
           </p>
           <p className="mt-1 font-mono">
-            Huyện Quảng Hòa, Tỉnh Cao Bằng · Biên soạn bởi Tổ Tin học · Năm học 2026-2027
+            Huyện Quảng Hòa, Tỉnh Cao Bằng · Biên soạn bởi Tổ Tự nhiên · Năm học 2026-2027
           </p>
           <p className="mt-2 text-[11px] text-star-soft/60">
             Ứng dụng xây dựng độc lập từ đầu với sự trợ giúp của AI Antigravity. Tuân thủ 100% bản quyền SGK Kết nối tri thức.

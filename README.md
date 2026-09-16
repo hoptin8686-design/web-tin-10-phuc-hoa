@@ -8,7 +8,7 @@ Trang web học tập, ôn tập và số hóa chương trình môn **Tin học 
 
 1. **Nhận diện trường THPT Phục Hòa:**
    - Huy hiệu `Trường THPT Phục Hòa - Tỉnh Cao Bằng` trang trọng.
-   - Phụ đề chuyên môn: `Tổ Tin học — Năm học 2026-2027`.
+   - Phụ đề chuyên môn: `Tổ Tự nhiên — Năm học 2026-2027`.
    - Giao diện **Dark Mode không gian vũ trụ** cao cấp (`#0A1720`), phối màu rực rỡ chuẩn nhận diện: Xanh biển ngọc Sea (`#0D7C86`), Cam san hô Coral (`#F2683C`), Xanh lá Leaf (`#0E9F6E`), Vàng kim Gold (`#EFA31D`).
    - Phông chữ tiếng Việt chuẩn hóa: `Baloo 2` và `Inter`.
 
