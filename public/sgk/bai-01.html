@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGK Tin học 10 · Bài 1: Thông tin và xử lí thông tin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-size-base: 16px;
+      --bg-void: #0A1720;
+      --card-void: #102631;
+      --sea: #0D7C86;
+      --sea-light: #5EEAD4;
+      --coral: #F2683C;
+      --leaf: #0E9F6E;
+      --gold: #EFA31D;
+      --star: #EAF3F5;
+      --star-soft: #94B3BC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-void);
+      color: var(--star);
+      font-family: 'Inter', sans-serif;
+      font-size: var(--font-size-base);
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+    header.top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 23, 32, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--sea-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-void);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .font-btn {
+      background: none;
+      border: none;
+      color: var(--star);
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .font-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--sea-light); }
+    .font-size-indicator { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--star-soft); }
+
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      padding: 32px 20px 80px;
+    }
+    @media (max-width: 820px) {
+      .main-container { grid-template-columns: 1fr; }
+      aside.toc-sidebar { display: none; }
+    }
+    aside.toc-sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+      background: var(--card-void);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .toc-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sea-light);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .toc-link {
+      color: var(--star-soft);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .toc-link:hover, .toc-link.active {
+      color: var(--star);
+      background: rgba(13, 124, 134, 0.15);
+      border-left-color: var(--sea-light);
+    }
+
+    article.book-content {
+      background: var(--card-void);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 36px 40px;
+    }
+    @media (max-width: 600px) {
+      article.book-content { padding: 24px 18px; }
+    }
+    .book-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h1.book-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--star);
+      margin: 8px 0 20px;
+      line-height: 1.3;
+    }
+    .box-goal {
+      background: rgba(13, 124, 134, 0.12);
+      border: 1px solid rgba(13, 124, 134, 0.35);
+      border-left: 4px solid var(--sea-light);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+    .box-goal-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      color: var(--sea-light);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .box-goal ul { padding-left: 20px; color: var(--star); font-size: 0.95rem; }
+    .box-goal li { margin-bottom: 4px; }
+
+    .box-starter {
+      background: rgba(242, 104, 60, 0.08);
+      border: 1px solid rgba(242, 104, 60, 0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+    .box-starter-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      color: var(--coral);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    h2.section-heading {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--sea-light);
+      margin: 36px 0 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+    }
+    h3.sub-heading {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--coral);
+      margin: 22px 0 10px;
+    }
+    p { margin-bottom: 14px; color: rgba(234, 243, 245, 0.92); }
+    strong { color: #ffffff; }
+
+    .box-activity {
+      background: rgba(239, 163, 29, 0.08);
+      border: 1px solid rgba(239, 163, 29, 0.3);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .box-activity-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .box-remember {
+      background: rgba(14, 159, 110, 0.09);
+      border: 1.5px dashed var(--leaf);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 24px 0;
+    }
+    .box-remember-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      color: var(--leaf);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .box-remember ul { padding-left: 20px; }
+    .box-remember li { margin-bottom: 6px; }
+
+    table.sgk-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+    table.sgk-table th, table.sgk-table td {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    table.sgk-table th {
+      background: rgba(13, 124, 134, 0.25);
+      color: var(--sea-light);
+      font-family: 'Baloo 2', sans-serif;
+    }
+    table.sgk-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .question-box {
+      background: rgba(10, 23, 32, 0.8);
+      border-left: 3px solid var(--sea-light);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="brand-title">
+      <span>📖</span>
+      <span>SGK Số hóa · Tin học 10 (KNTT)</span>
+    </div>
+    <div class="font-controls">
+      <span class="font-size-indicator">Cỡ chữ:</span>
+      <button class="font-btn" onclick="adjustFontSize(-1)" title="Giảm cỡ chữ">A-</button>
+      <button class="font-btn" onclick="adjustFontSize(1)" title="Tăng cỡ chữ">A+</button>
+      <button class="font-btn" onclick="resetFontSize()" title="Mặc định" style="font-size: 0.8rem">100%</button>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="toc-sidebar">
+      <div class="toc-title">
+        <span>📑</span>
+        <span>Mục lục bài học</span>
+      </div>
+      <ul class="toc-list">
+        <li><a href="#muc-tieu" class="toc-link">Mục tiêu bài học</a></li>
+        <li><a href="#khoi-dong" class="toc-link">Khởi động</a></li>
+        <li><a href="#phan-1" class="toc-link">1. Thông tin và dữ liệu</a></li>
+        <li><a href="#phan-1a" class="toc-link" style="padding-left: 20px;">a) Quá trình xử lí thông tin</a></li>
+        <li><a href="#phan-1b" class="toc-link" style="padding-left: 20px;">b) Phân biệt dữ liệu & thông tin</a></li>
+        <li><a href="#phan-2" class="toc-link">2. Đơn vị lưu trữ dữ liệu</a></li>
+        <li><a href="#phan-3" class="toc-link">3. Lưu trữ, xử lí & truyền thông</a></li>
+        <li><a href="#luyen-tap" class="toc-link">Luyện tập & Vận dụng</a></li>
+      </ul>
+    </aside>
+
+    <article class="book-content">
+      <div class="book-meta">Chủ đề 1: Máy tính và xã hội tri thức · Trang 6–10</div>
+      <h1 class="book-title">Bài 1. Thông tin và xử lí thông tin</h1>
+
+      <!-- Khối mục tiêu bài học (Box Goal) -->
+      <section id="muc-tieu" class="box-goal">
+        <div class="box-goal-title">🎯 Sau bài này em sẽ:</div>
+        <ul>
+          <li>Phân biệt được thông tin và dữ liệu.</li>
+          <li>Chuyển đổi giữa các đơn vị lưu trữ dữ liệu.</li>
+          <li>Nêu được sự ưu việt của việc lưu trữ, xử lí và truyền thông tin bằng thiết bị số.</li>
+        </ul>
+      </section>
+
+      <!-- Khởi động -->
+      <section id="khoi-dong" class="box-starter">
+        <div class="box-starter-title">🚀 Khởi động:</div>
+        <p>
+          Tin học được định nghĩa là khoa học nghiên cứu các phương pháp và quá trình xử lí thông tin tự động bằng các phương tiện kĩ thuật, chủ yếu bằng máy tính. Chúng ta đã biết ở lớp dưới, thông tin được biểu diễn trong máy tính bằng các dãy bit (gồm các kí hiệu 0, 1), máy tính xử lí dữ liệu là các dãy bit trong bộ nhớ. <em>Vậy dữ liệu và thông tin khác nhau như thế nào?</em>
+        </p>
+      </section>
+
+      <!-- Phần 1 -->
+      <section id="phan-1">
+        <h2 class="section-heading">1. Thông tin và dữ liệu</h2>
+
+        <div id="phan-1a">
+          <h3 class="sub-heading">a) Quá trình xử lí thông tin</h3>
+          <p>
+            Thông tin là tất cả những gì mang lại cho chúng ta hiểu biết. Như vậy thông tin gắn với quá trình nhận thức. Máy tính không tự nhận thức được mà chỉ là công cụ hỗ trợ cho con người trong quá trình nhận thức.
+          </p>
+          <p>Quá trình xử lí thông tin của máy tính gồm các bước sau:</p>
+          <ul>
+            <li style="margin-left: 20px; margin-bottom: 6px;">
+              <strong>Bước 1: Tiếp nhận dữ liệu.</strong> Máy tính tiếp nhận dữ liệu từ các thiết bị (ví dụ tệp hình ảnh từ máy quét, bàn phím, camera...) do con người nhập hoặc chuyển thành dữ liệu.
+            </li>
+            <li style="margin-left: 20px; margin-bottom: 6px;">
+              <strong>Bước 2: Xử lí dữ liệu.</strong> Biến đổi dữ liệu trong bộ nhớ máy tính để tạo ra dữ liệu mới (ví dụ tính nhiệt độ trung bình nhiều năm).
+            </li>
+            <li style="margin-left: 20px; margin-bottom: 6px;">
+              <strong>Bước 3: Đưa ra kết quả.</strong> Dữ liệu được thể hiện dưới dạng văn bản, âm thanh, hình ảnh... hoặc lưu trữ lên vật mang tin.
+            </li>
+          </ul>
+        </div>
+
+        <div id="phan-1b">
+          <h3 class="sub-heading">b) Phân biệt dữ liệu và thông tin</h3>
+
+          <div class="box-activity">
+            <div class="box-activity-title">⚡ Hoạt động 1: Có thể đồng nhất thông tin với dữ liệu được không?</div>
+            <p>Có các ý kiến như sau về dữ liệu của một bài giảng môn Ngữ văn:</p>
+            <p>• <strong>An:</strong> Bài ghi trong vở của em là dữ liệu.<br>
+            • <strong>Minh:</strong> Tệp bài soạn bằng Word của cô giáo là dữ liệu.<br>
+            • <strong>Khoa:</strong> Dữ liệu là tệp video ghi lại tiết giảng của cô giáo.<br>
+            <em>Theo em bạn nào nói đúng?</em></p>
+          </div>
+
+          <p>Thông tin và dữ liệu độc lập tương đối với nhau:</p>
+          <ul>
+            <li style="margin-left: 20px; margin-bottom: 6px;">Cùng một thông tin có thể được thể hiện bằng nhiều loại dữ liệu khác nhau (chữ viết, âm thanh, video).</li>
+            <li style="margin-left: 20px; margin-bottom: 6px;">Một dữ liệu có thể mang nhiều thông tin khác nhau tùy vào ngữ cảnh và cách xử lí.</li>
+            <li style="margin-left: 20px; margin-bottom: 6px;"><strong>Tính toàn vẹn:</strong> Dữ liệu không đầy đủ có thể làm thông tin sai lệch, thậm chí không xác định được.</li>
+          </ul>
+
+          <div class="box-remember">
+            <div class="box-remember-title">📌 Điều ghi nhớ:</div>
+            <ul>
+              <li>Trong máy tính, <strong>dữ liệu</strong> là thông tin đã được đưa vào máy tính để máy tính có thể nhận biết và xử lí được.</li>
+              <li><strong>Thông tin</strong> là ý nghĩa của dữ liệu. Dữ liệu là các yếu tố thể hiện, xác định thông tin.</li>
+              <li>Thông tin có <strong>tính toàn vẹn</strong>. Dữ liệu không đầy đủ có thể làm thông tin sai lệch hoặc không xác định được.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Phần 2 -->
+      <section id="phan-2">
+        <h2 class="section-heading">2. Đơn vị lưu trữ dữ liệu</h2>
+        <p>
+          Máy tính không truy cập trong bộ nhớ tới từng bit mà truy cập theo từng nhóm bit. Nghĩa gốc của "byte" là một đơn vị dữ liệu dưới dạng một dãy các bit có độ dài nhỏ nhất có thể truy cập được. Phần lớn các máy tính hiện nay sử dụng byte gồm <strong>8 bit</strong>.
+        </p>
+        <p>
+          Các đơn vị đo dữ liệu lớn hơn được hình thành bằng cách nhân với <strong>2¹⁰ = 1 024 lần</strong>:
+        </p>
+
+        <table class="sgk-table">
+          <thead>
+            <tr>
+              <th>Đơn vị</th>
+              <th>Kí hiệu</th>
+              <th>Lượng dữ liệu quy đổi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>bit</td><td>bit</td><td>1 bit (0 hoặc 1)</td></tr>
+            <tr><td>Byte</td><td>B</td><td>8 bit</td></tr>
+            <tr><td>Kilobyte</td><td>KB</td><td>2¹⁰ B = 1 024 Byte</td></tr>
+            <tr><td>Megabyte</td><td>MB</td><td>2¹⁰ KB = 1 024 KB</td></tr>
+            <tr><td>Gigabyte</td><td>GB</td><td>2¹⁰ MB = 1 024 MB</td></tr>
+            <tr><td>Terabyte</td><td>TB</td><td>2¹⁰ GB = 1 024 GB</td></tr>
+            <tr><td>Petabyte</td><td>PB</td><td>2¹⁰ TB = 1 024 TB</td></tr>
+            <tr><td>Exabyte</td><td>EB</td><td>2¹⁰ PB = 1 024 PB</td></tr>
+            <tr><td>Zettabyte</td><td>ZB</td><td>2¹⁰ EB = 1 024 EB</td></tr>
+            <tr><td>Yottabyte</td><td>YB</td><td>2¹⁰ ZB = 1 024 ZB</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Phần 3 -->
+      <section id="phan-3">
+        <h2 class="section-heading">3. Lưu trữ, xử lí và truyền thông bằng thiết bị số</h2>
+        <p>Thiết bị số có những ưu điểm vượt trội so với các phương thức truyền thống:</p>
+        <ul>
+          <li style="margin-left: 20px; margin-bottom: 8px;">
+            <strong>Về lưu trữ:</strong> Khả năng lưu trữ khổng lồ trong thiết bị nhỏ gọn (ổ cứng 2 TB có thể chứa cả thư viện sách đại học), giá thành rẻ, tìm kiếm tức thời.
+          </li>
+          <li style="margin-left: 20px; margin-bottom: 8px;">
+            <strong>Về xử lí:</strong> Tốc độ tính toán siêu nhanh (hàng tỉ tới hàng trăm triệu tỉ phép tính/giây), độ chính xác tuyệt đối, hoạt động ổn định liên tục không mệt mỏi.
+          </li>
+          <li style="margin-left: 20px; margin-bottom: 8px;">
+            <strong>Về truyền thông:</strong> Tốc độ truyền tải ánh sáng qua cáp quang và mạng không dây, chia sẻ dữ liệu toàn cầu tức thời.
+          </li>
+        </ul>
+
+        <div class="box-remember">
+          <div class="box-remember-title">📌 Tóm tắt ưu điểm của thiết bị số:</div>
+          <ul>
+            <li>Giúp xử lí thông tin với năng suất rất cao và ổn định.</li>
+            <li>Có khả năng lưu trữ với dung lượng lớn, giá thành rẻ, tìm kiếm nhanh và dễ dàng.</li>
+            <li>Có khả năng truyền tin với tốc độ rất lớn.</li>
+            <li>Giúp thực hiện tự động, chính xác, chi phí thấp và tiện lợi hơn.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Luyện tập & Vận dụng -->
+      <section id="luyen-tap">
+        <h2 class="section-heading">Luyện tập & Vận dụng</h2>
+        <div class="question-box">
+          <strong>Câu 1:</strong> Từ dữ liệu điểm các môn học của học sinh, có thể rút ra những thông tin gì? Mô tả sơ bộ quá trình xử lí để rút ra một thông tin trong số đó.
+        </div>
+        <div class="question-box">
+          <strong>Câu 2:</strong> Một thẻ nhớ dung lượng 16 GB có thể chứa được tối đa bao nhiêu ảnh chụp nếu dung lượng trung bình mỗi ảnh là 4 MB?
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <script>
+    let currentFontSize = 16;
+    function adjustFontSize(delta) {
+      currentFontSize = Math.min(24, Math.max(12, currentFontSize + delta));
+      document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
+      document.querySelector('.font-size-indicator').textContent = Math.round((currentFontSize / 16) * 100) + '%';
+    }
+    function resetFontSize() {
+      currentFontSize = 16;
+      document.documentElement.style.setProperty('--font-size-base', '16px');
+      document.querySelector('.font-size-indicator').textContent = '100%';
+    }
+
+    // Tự bắt highlight mục lục khi cuộn
+    const sections = document.querySelectorAll('section[id], div[id^="phan-"]');
+    const navLinks = document.querySelectorAll('.toc-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
