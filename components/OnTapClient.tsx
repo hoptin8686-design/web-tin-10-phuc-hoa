@@ -92,6 +92,34 @@ export default function OnTapClient() {
           </div>
 
           <div className="mt-8 space-y-4">
+            {/* THẺ ĐỀ THI CHÍNH THỨC CHUẨN MA TRẬN */}
+            <div className="flex flex-col gap-4 rounded-3xl border-2 border-sea/50 bg-gradient-to-r from-sea/20 via-void-card to-coral/20 p-6 shadow-card transition hover:border-sea sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-coral/20 px-3 py-1 font-mono text-xs font-bold text-coral">
+                    ⭐ ĐỀ CHUẨN MA TRẬN BỘ GD&ĐT
+                  </span>
+                  <span className="rounded-full bg-leaf/20 px-3 py-1 font-mono text-xs font-bold text-leaf-deep">
+                    45 Phút · 10.0 Điểm
+                  </span>
+                </div>
+                <h3 className="mt-2 font-display text-xl font-bold text-star">
+                  📝 Đề Kiểm Tra Giữa Học Kỳ I — Tin Học 10 (Chuẩn Ma Trận)
+                </h3>
+                <p className="mt-1 text-xs sm:text-sm text-star-soft">
+                  Cấu trúc 3 phần theo tập huấn Sở GD&ĐT Cao Bằng: 12 trắc nghiệm (3.0đ) + 4 đúng/sai (4.0đ) + 3 tự luận (3.0đ). Có bảng ma trận & bản đặc tả.
+                </p>
+                <p className="mt-2 font-mono text-xs text-sea-deep">
+                  🏫 Đề kiểm tra trường THPT Phục Hòa · Năm học 2026-2027
+                </p>
+              </div>
+              <Link
+                href="/thi-giua-ki-1"
+                className="shrink-0 rounded-2xl bg-gradient-to-r from-sea via-[#14B8A6] to-coral px-6 py-3 font-display text-sm font-bold text-white shadow-card hover:shadow-glow transition text-center"
+              >
+                Vào thi ngay →
+              </Link>
+            </div>
             {MOCK_EXAMS.map((exam) => (
               <div
                 key={exam.id}

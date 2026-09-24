@@ -107,26 +107,58 @@ export default function HomeClient({
           )}
         </header>
 
-        {/* BANNER ÔN TẬP KIỂM TRA ĐỊNH KỲ (THAY CHO ĐỀ THI TỐT NGHIỆP THPT) */}
-        <Link
-          href="/on-tap"
-          className="mt-8 flex flex-col items-start justify-between gap-4 rounded-3xl border-2 border-sea/40 bg-gradient-to-r from-sea/[0.15] via-void-card to-coral/[0.15] p-5 sm:p-6 shadow-card transition hover:-translate-y-1 hover:border-sea hover:shadow-card-hover sm:flex-row sm:items-center cursor-pointer"
-        >
-          <div>
-            <span className="rounded-full bg-coral/20 px-3 py-1 font-mono text-xs font-bold text-coral">
-              ⚡ Dành riêng cho học sinh lớp 10
-            </span>
-            <h2 className="mt-2 font-display text-xl sm:text-2xl font-bold text-star">
-              🎯 Ôn tập Kiểm tra Định kì — Giữa kì & Cuối kì
-            </h2>
-            <p className="mt-1 text-xs sm:text-sm text-star-soft">
-              Đề thi trắc nghiệm bấm giờ 45 phút, bao quát kiến thức và chấm điểm tự động kèm giải thích.
-            </p>
+        {/* BANNER NỔI BẬT: ĐỀ KIỂM TRA GIỮA HỌC KỲ I (CHUẨN MA TRẬN BỘ GD&ĐT) */}
+        <div className="mt-8 overflow-hidden rounded-3xl border-2 border-sea/50 bg-gradient-to-br from-sea/20 via-void-card to-coral/20 p-6 sm:p-8 shadow-card transition hover:border-sea hover:shadow-card-hover">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-coral/20 px-3 py-1 font-mono text-xs font-bold text-coral">
+                  ⭐ CHUẨN MA TRẬN TẬP HUẤN SỞ GD&ĐT CAO BẰNG
+                </span>
+                <span className="rounded-full bg-leaf/20 px-3 py-1 font-mono text-xs font-bold text-leaf-deep">
+                  Thời gian: 45 Phút
+                </span>
+              </div>
+
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-star tracking-tight">
+                📝 Đề Kiểm Tra Giữa Học Kỳ I — Tin Học 10
+              </h2>
+
+              <p className="text-xs sm:text-sm text-star-soft max-w-2xl leading-relaxed">
+                Đề kiểm tra đánh giá định kì chính thức chuẩn cấu trúc ma trận:{" "}
+                <strong className="text-star">Phần I (12 câu trắc nghiệm - 3.0đ)</strong>,{" "}
+                <strong className="text-coral-deep">Phần II (4 câu đúng/sai - 4.0đ)</strong> và{" "}
+                <strong className="text-gold-deep">Phần III (3 câu tự luận - 3.0đ)</strong>. Tự động chấm điểm, pháo hoa khen thưởng và đáp án chi tiết từng câu.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs text-star-soft">
+                <span className="rounded-lg bg-void px-2.5 py-1 border border-star/10">
+                  🎯 Tỉ lệ: 40% Biết • 30% Hiểu • 30% Vận dụng
+                </span>
+                <span className="rounded-lg bg-void px-2.5 py-1 border border-star/10">
+                  🏫 THPT Phục Hòa
+                </span>
+              </div>
+            </div>
+
+            <div className="flex shrink-0 flex-col sm:flex-row lg:flex-col gap-2.5">
+              <Link
+                href="/thi-giua-ki-1"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sea via-[#14B8A6] to-coral px-6 py-3.5 font-display text-sm sm:text-base font-bold text-white shadow-card hover:shadow-glow transition text-center"
+              >
+                <span>Vào phòng thi ngay</span>
+                <span>➔</span>
+              </Link>
+
+              <Link
+                href="/on-tap"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-star/20 bg-void px-5 py-3 font-display text-xs sm:text-sm font-semibold text-star-soft hover:border-sea hover:text-star transition text-center"
+              >
+                <span>Ngân hàng đề ôn tập khác</span>
+              </Link>
+            </div>
           </div>
-          <span className="shrink-0 rounded-full bg-gradient-to-r from-sea to-coral px-5 py-2.5 font-display text-sm font-bold text-white shadow-card hover:shadow-glow transition">
-            Luyện đề ngay →
-          </span>
-        </Link>
+        </div>
 
         {/* GỢI Ý ÔN LẠI DỰA TRÊN CÂU SAI CỦA HỌC SINH */}
         {loaded && canOnLai.length > 0 && (
