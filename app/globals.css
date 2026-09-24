@@ -61,3 +61,38 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #0d7c86;
 }
+
+/* Định dạng tối ưu khi in đề thi hoặc lưu file PDF từ trình duyệt */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+  .playground {
+    background-image: none !important;
+  }
+  header nav,
+  .sticky,
+  button,
+  a[href^="/"] {
+    display: none !important;
+  }
+  .rounded-3xl,
+  .rounded-2xl,
+  .rounded-xl {
+    border-radius: 4px !important;
+    border-color: #d1d5db !important;
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+  }
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+  th, td {
+    border: 1px solid #9ca3af !important;
+    color: #111827 !important;
+  }
+}
+

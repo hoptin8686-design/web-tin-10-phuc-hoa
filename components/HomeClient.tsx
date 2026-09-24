@@ -144,15 +144,23 @@ export default function HomeClient({
             <div className="flex shrink-0 flex-col sm:flex-row lg:flex-col gap-2.5">
               <Link
                 href="/thi-giua-ki-1"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sea via-[#14B8A6] to-coral px-6 py-3.5 font-display text-sm sm:text-base font-bold text-white shadow-card hover:shadow-glow transition text-center"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sea via-[#14B8A6] to-coral px-6 py-3 font-display text-sm sm:text-base font-bold text-white shadow-card hover:shadow-glow transition text-center"
               >
                 <span>Vào phòng thi ngay</span>
                 <span>➔</span>
               </Link>
 
+              <a
+                href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gold/40 bg-gold/10 px-5 py-2.5 font-display text-xs sm:text-sm font-bold text-gold-deep hover:bg-gold/20 hover:text-gold transition text-center"
+              >
+                <span>📥 Tải đề Word (.docx)</span>
+              </a>
+
               <Link
                 href="/on-tap"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-star/20 bg-void px-5 py-3 font-display text-xs sm:text-sm font-semibold text-star-soft hover:border-sea hover:text-star transition text-center"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-star/20 bg-void px-5 py-2.5 font-display text-xs sm:text-sm font-semibold text-star-soft hover:border-sea hover:text-star transition text-center"
               >
                 <span>Ngân hàng đề ôn tập khác</span>
               </Link>

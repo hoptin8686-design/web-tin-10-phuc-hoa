@@ -22,6 +22,7 @@ import {
   Sparkles,
   School,
   ExternalLink,
+  Download,
 } from "lucide-react";
 import {
   MIDTERM_MATRIX,
@@ -206,17 +207,30 @@ export default function ExamMidtermClient() {
       <header className="border-b border-star/15 bg-void-card/90 backdrop-blur-md">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 rounded-full border border-sea/30 bg-void px-3.5 py-1 text-xs font-medium text-sea-deep hover:border-sea transition"
-            >
-              ← Trang chủ
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 rounded-full border border-sea/30 bg-void px-3.5 py-1 text-xs font-medium text-sea-deep hover:border-sea transition"
+              >
+                ← Trang chủ
+              </Link>
 
-            <div className="inline-flex items-center gap-2 rounded-full bg-sea/15 px-3 py-1 font-mono text-xs text-sea-deep">
-              <School className="h-3.5 w-3.5" />
-              <span>Trường THPT Phục Hòa — Tổ Tự Nhiên</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-sea/15 px-3 py-1 font-mono text-xs text-sea-deep">
+                <School className="h-3.5 w-3.5" />
+                <span>Trường THPT Phục Hòa — Tổ Tự Nhiên</span>
+              </div>
             </div>
+
+            {/* NÚT TẢI FILE WORD VỀ MÁY TÍNH */}
+            <a
+              href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+              download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-coral to-gold px-4 py-1.5 font-display text-xs font-bold text-void shadow-glow hover:opacity-95 transition"
+              title="Tải về máy tính file Word .docx gốc gồm Ma trận, Đặc tả, Đề thi và Đáp án"
+            >
+              <Download className="h-3.5 w-3.5" />
+              <span>Tải file Word (.docx) về máy</span>
+            </a>
           </div>
 
           <div className="mt-4 text-center">
@@ -312,6 +326,31 @@ export default function ExamMidtermClient() {
                     <span className="font-mono text-xs font-bold text-gold-deep uppercase">Phần III</span>
                     <p className="mt-1 font-display text-base font-bold text-star">3 Câu Tự Luận</p>
                     <p className="text-xs text-star-soft">Vận dụng thực tế • 3.0 điểm</p>
+                  </div>
+                </div>
+
+                {/* KHỐI TẢI VỀ MÁY TÍNH CHO GIÁO VIÊN & HỌC SINH */}
+                <div className="mt-6 rounded-2xl border-2 border-gold/40 bg-gold/[0.08] p-4 sm:p-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                      <span className="rounded-full bg-gold/20 px-2.5 py-0.5 font-mono text-[11px] font-bold text-gold-deep">
+                        💾 TÀI LIỆU DÀNH CHO THẦY CÔ & HỌC SINH
+                      </span>
+                      <h3 className="mt-1.5 font-display text-sm sm:text-base font-bold text-star">
+                        Tải trọn bộ Đề thi + Ma trận + Bản đặc tả + Đáp án (.docx)
+                      </h3>
+                      <p className="mt-0.5 text-xs text-star-soft">
+                        Định dạng Microsoft Word chuẩn Sở GD&ĐT Cao Bằng, sẵn sàng in ấn ra giấy hoặc chỉnh sửa.
+                      </p>
+                    </div>
+                    <a
+                      href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                      download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold to-coral px-5 py-2.5 font-display text-xs sm:text-sm font-bold text-void shadow-card hover:shadow-glow transition"
+                    >
+                      <Download className="h-4 w-4" />
+                      <span>Tải về máy (.docx)</span>
+                    </a>
                   </div>
                 </div>
 
@@ -741,6 +780,15 @@ export default function ExamMidtermClient() {
 
                     {/* HÀNG NÚT THAO TÁC */}
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                      <a
+                        href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                        download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                        className="flex items-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-4 py-2 font-display text-xs sm:text-sm font-bold text-gold-deep hover:bg-gold/20 transition"
+                      >
+                        <Download className="h-4 w-4" />
+                        <span>Tải file Word (.docx)</span>
+                      </a>
+
                       <button
                         onClick={handleResetExam}
                         className="flex items-center gap-2 rounded-xl border border-star/20 bg-void px-4 py-2 font-display text-xs sm:text-sm font-bold text-star hover:border-sea transition"
@@ -1026,13 +1074,24 @@ export default function ExamMidtermClient() {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => setShowMatrixModal(true)}
-                  className="flex items-center gap-2 rounded-xl border border-sea/40 bg-void px-4 py-2 font-display text-xs sm:text-sm font-bold text-sea-deep hover:bg-sea/10 transition"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  <span>Xem ảnh ma trận gốc</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                    download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                    className="flex items-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-4 py-2 font-display text-xs sm:text-sm font-bold text-gold-deep hover:bg-gold/20 transition"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span>Tải ma trận (.docx)</span>
+                  </a>
+
+                  <button
+                    onClick={() => setShowMatrixModal(true)}
+                    className="flex items-center gap-2 rounded-xl border border-sea/40 bg-void px-4 py-2 font-display text-xs sm:text-sm font-bold text-sea-deep hover:bg-sea/10 transition"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    <span>Xem ảnh ma trận gốc</span>
+                  </button>
+                </div>
               </div>
 
               {/* BẢNG MA TRẬN TỔNG QUÁT */}
@@ -1223,16 +1282,27 @@ export default function ExamMidtermClient() {
         {activeTab === "spec" && (
           <div className="space-y-6">
             <div className="rounded-3xl border border-star/20 bg-void-card p-6 sm:p-8 shadow-card">
-              <div className="border-b border-star/15 pb-4">
-                <span className="rounded-full bg-gold/20 px-3 py-1 font-mono text-xs font-bold text-gold-deep">
-                  BẢNG ĐẶC TẢ KỸ THUẬT ĐỀ THI
-                </span>
-                <h2 className="mt-2 font-display text-xl sm:text-2xl font-bold text-star">
-                  Bản Đặc Tả Đề Kiểm Tra Giữa Học Kỳ I — Tin Học 10
-                </h2>
-                <p className="text-xs text-star-soft mt-1">
-                  Quy định chi tiết các mức độ nhận thức (Nhận biết, Thông hiểu, Vận dụng) và ánh xạ từng câu hỏi cụ thể trong đề thi.
-                </p>
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-star/15 pb-4">
+                <div>
+                  <span className="rounded-full bg-gold/20 px-3 py-1 font-mono text-xs font-bold text-gold-deep">
+                    BẢNG ĐẶC TẢ KỸ THUẬT ĐỀ THI
+                  </span>
+                  <h2 className="mt-2 font-display text-xl sm:text-2xl font-bold text-star">
+                    Bản Đặc Tả Đề Kiểm Tra Giữa Học Kỳ I — Tin Học 10
+                  </h2>
+                  <p className="text-xs text-star-soft mt-1">
+                    Quy định chi tiết các mức độ nhận thức (Nhận biết, Thông hiểu, Vận dụng) và ánh xạ từng câu hỏi cụ thể trong đề thi.
+                  </p>
+                </div>
+
+                <a
+                  href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                  download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
+                  className="flex items-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-4 py-2 font-display text-xs sm:text-sm font-bold text-gold-deep hover:bg-gold/20 transition"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Tải bản đặc tả (.docx)</span>
+                </a>
               </div>
 
               <div className="mt-6 space-y-6">
