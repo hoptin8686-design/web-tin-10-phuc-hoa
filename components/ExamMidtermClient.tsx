@@ -334,22 +334,64 @@ export default function ExamMidtermClient() {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <span className="rounded-full bg-gold/20 px-2.5 py-0.5 font-mono text-[11px] font-bold text-gold-deep">
-                        💾 TÀI LIỆU DÀNH CHO THẦY CÔ & HỌC SINH
+                        💾 TÀI LIỆU DÀNH CHO THẦY CÔ &amp; HỌC SINH
                       </span>
                       <h3 className="mt-1.5 font-display text-sm sm:text-base font-bold text-star">
-                        Tải trọn bộ Đề thi + Ma trận + Bản đặc tả + Đáp án (.docx)
+                        Tải về các tệp Word (.docx) chuẩn Bộ GD&amp;ĐT và Sở GD&amp;ĐT Cao Bằng
                       </h3>
                       <p className="mt-0.5 text-xs text-star-soft">
-                        Định dạng Microsoft Word chuẩn Sở GD&ĐT Cao Bằng, sẵn sàng in ấn ra giấy hoặc chỉnh sửa.
+                        Định dạng Microsoft Word Times New Roman 12pt, căn lề chuẩn Nghị định 30/2020/NĐ-CP, sẵn sàng in ấn ra giấy hoặc biên soạn lại.
                       </p>
                     </div>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     <a
-                      href="/download/De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
-                      download="De_Kiem_Tra_Giua_Ky_I_Tin_Hoc_10_Ket_Noi_Tri_Thuc.docx"
-                      className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold to-coral px-5 py-2.5 font-display text-xs sm:text-sm font-bold text-void shadow-card hover:shadow-glow transition"
+                      href="/download/Tron_Bo_De_Thi_Va_Ma_Tran_Giua_HK1_Tin_10.docx"
+                      download="Tron_Bo_De_Thi_Va_Ma_Tran_Giua_HK1_Tin_10.docx"
+                      className="flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-gold to-coral p-3 text-void font-display text-xs font-bold shadow-card hover:shadow-glow transition group"
                     >
-                      <Download className="h-4 w-4" />
-                      <span>Tải về máy (.docx)</span>
+                      <Download className="h-4 w-4 shrink-0" />
+                      <div className="text-left">
+                        <div className="leading-tight">Trọn bộ Hồ sơ Đề thi</div>
+                        <div className="text-[10px] opacity-80 font-normal">Ma trận + Đặc tả + Đề + Đáp án</div>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/download/Ma_Tran_Va_Bang_Dac_Ta_Giua_HK1_Tin_10.docx"
+                      download="Ma_Tran_Va_Bang_Dac_Ta_Giua_HK1_Tin_10.docx"
+                      className="flex items-center gap-2.5 rounded-xl border border-sea/40 bg-void-card p-3 text-star text-xs font-semibold hover:border-sea hover:bg-sea/10 transition group"
+                    >
+                      <Table className="h-4 w-4 text-sea shrink-0" />
+                      <div className="text-left">
+                        <div className="text-sea font-bold leading-tight">Ma trận &amp; Đặc tả</div>
+                        <div className="text-[10px] text-star-soft">Khung ma trận A4 xoay ngang</div>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/download/De_Va_Dap_An_Giua_HK1_Tin_10_KNTT.docx"
+                      download="De_Va_Dap_An_Giua_HK1_Tin_10_KNTT.docx"
+                      className="flex items-center gap-2.5 rounded-xl border border-gold/40 bg-void-card p-3 text-star text-xs font-semibold hover:border-gold hover:bg-gold/10 transition group"
+                    >
+                      <FileText className="h-4 w-4 text-gold shrink-0" />
+                      <div className="text-left">
+                        <div className="text-gold font-bold leading-tight">Đề thi kèm Đáp án</div>
+                        <div className="text-[10px] text-star-soft">Có lời giải chi tiết từng câu</div>
+                      </div>
+                    </a>
+
+                    <a
+                      href="/download/De_Kiem_Tra_Giua_HK1_Tin_10_KNTT.docx"
+                      download="De_Kiem_Tra_Giua_HK1_Tin_10_KNTT.docx"
+                      className="flex items-center gap-2.5 rounded-xl border border-coral/40 bg-void-card p-3 text-star text-xs font-semibold hover:border-coral hover:bg-coral/10 transition group"
+                    >
+                      <Printer className="h-4 w-4 text-coral shrink-0" />
+                      <div className="text-left">
+                        <div className="text-coral font-bold leading-tight">Đề thi phát học sinh</div>
+                        <div className="text-[10px] text-star-soft">Mã đề 101, sẵn sàng in ấn</div>
+                      </div>
                     </a>
                   </div>
                 </div>
